@@ -70,22 +70,25 @@ func testPointer() {
 	
 	// Book pointer
 	var book3Ptr *Book
+	
+	book5Ptr := &Book{"gearman",150}
+	fmt.Println(book5Ptr)
 
 	book4 := Book{"kafka",120}
 
-	// givr book4's address to this pointer 
+	// give book4's address to this pointer 
 	book3Ptr = &book4
 	fmt.Println(book3Ptr)
 
 	// golang , book3Ptr.call() == *(book3Ptr).call()
 	book3Ptr.call()
 	
-	int1:=1
+	int1,int2 := 1,2
 	var int2Ptr *int
-	int2Ptr =&int1
+	int2Ptr =&int2
 
 	// print int1's address
-	fmt.Println(int2Ptr)
+	fmt.Println(int1,int2Ptr)
 }
 
 // slice just give a copy to the var in this function
