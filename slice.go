@@ -114,6 +114,7 @@ func TestModifyElements() {
     //slice3未跟着slice4增加元素
 	fmt.Println("slice3: ","cap is ",cap(slice3),",len: ",len(slice3),slice3,",address is ",&slice3[0])
 	fmt.Println("slice4: ","cap is ",cap(slice4),",len: ",len(slice4),slice4,",address is ",&slice4[0])
+    //fmt.Println(slice3[2])
 
 	slice4[0] = 1
 	//此时修改slice4也会对slice3产生影响
@@ -121,6 +122,16 @@ func TestModifyElements() {
     //slice4:  cap is  3 ,len:  3 [1 0 1] ,address is  0xc0000121a0
     fmt.Println("slice3: ","cap is ",cap(slice3),",len: ",len(slice3),slice3,",address is ",&slice3[0])
 	fmt.Println("slice4: ","cap is ",cap(slice4),",len: ",len(slice4),slice4,",address is ",&slice4[0])
+}
+
+func InitSliceFromArray() {
+	arr := [3]int{1,2,3}
+	slice1 := arr[:]
+	slice2 := arr[1:]
+	slice3 := arr[:2]
+	slice4 := arr[1:2]
+
+	fmt.Println(slice1,slice2,slice3,slice4)
 }
 
 func main() {
@@ -137,4 +148,7 @@ func main() {
     
     fmt.Println("----------")
     TestModifyElements()
+
+    fmt.Println("----------")
+    InitSliceFromArray() 
 }
