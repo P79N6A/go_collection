@@ -3,8 +3,9 @@ package music_db
 import (
 	"fmt"
 	"container/list"
-	//"bufio"
-	//"os"
+	"bufio"
+	"os"
+	"io"
 	"io/ioutil"
 )
 
@@ -34,6 +35,22 @@ func NewProcessor(path string) *Processor {
 	}
 }
 
-//func (processor *Processor) GetAllFile(filePath string) {
+func (processor *Processor) ParseContent(name string) []string {
+	info := []string{}
 
-//}
+	file,err := os.Open("/Users/wangzijie/code/golang/src/music_player/data/"+name)
+	if err != nil {
+		panic(err)
+	}
+
+	reader := bufio.NewReader(file)
+	for {
+		line,err := reader.ReadString('\n')
+		if err != nil || io.EOF == err {
+			break
+		}
+	info = append(info,line)
+	}
+	return info
+}
+

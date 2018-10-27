@@ -6,5 +6,7 @@ import(
 )
 
 func main() {
-	music_db.NewProcessor("/Users/wangzijie/code/golang/src/music_player/data")
+	//music_db.NewProcessor("/Users/wangzijie/code/golang/src/music_player/data")
+	music := music_db.NewMusic()
+	music.GetInfo()
 }
