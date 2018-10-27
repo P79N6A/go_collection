@@ -5,26 +5,29 @@ import (
 )
 
 type Music struct {
+	name string
+	fileType string
 	singer string
 	album string
 	time string
-	lyric string	
+	lyric string
 }
 
 func NewMusic() *Music  {
 	music := Music{}
-
-	processor := NewProcessor("/Users/wangzijie/code/golang/src/music_player/data/")
-	info := processor.ParseContent("hello.st1")
-	music.singer = info[0]
-	music.album = info[1]
-	music.time = info[2]
-	for i := 3 ; i < len(info) ; i++ {
+	/*processor := NewProcessor("/Users/wangzijie/code/golang/src/music_player/data/")
+	info := processor.ParseContent(name)
+	music.name = info[0]
+	music.fileType = info[1]
+	music.singer = info[2]
+	music.album = info[3]
+	music.time = info[4]
+	for i := 5 ; i < len(info) ; i++ {
 		music.lyric += info[i]
-	}
+	}*/
 	return &music
 }
 
-func (music *Music) GetInfo() {
+func (music *Music) ShowInfo() {
 	fmt.Println(music)
-} 
+}
