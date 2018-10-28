@@ -3,6 +3,7 @@ package main
 import(
 	//"fmt"
 	"./music_db"
+	"./player"
 )
 
 func main() {
@@ -10,4 +11,6 @@ func main() {
 	processor.LoadAllMusic()
 	music := processor.GenerateMusic("hello.st1")
 	music.ShowInfo()
+	st1Player := player.NewSt1Player()
+	st1Player.PlaySingleMusic(music)
 }

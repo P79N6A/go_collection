@@ -5,12 +5,12 @@ import (
 )
 
 type Music struct {
-	name string
-	fileType string
-	singer string
-	album string
-	time string
-	lyric string
+	Name string
+	FileType string
+	Singer string
+	Album string
+	Time string
+	Lyric string
 }
 
 func NewMusic() *Music  {
