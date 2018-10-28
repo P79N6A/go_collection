@@ -76,3 +76,13 @@ func (processor *Processor)  GenerateMusic(name string) *Music {
 	return music
 }
 
+func (processor *Processor) LoadAllMusic() *list.List {
+	for e := processor.fileList.Front() ; e != nil ; e = e.Next() {
+		fmt.Println(e.Value)
+		//interface{}类型可用于向函数传递任意类型的变量，但对于函数内部，该变量仍然为interface{}类型
+		//e.Value是interface{}类型，需要将接口类型向普通类型转型，称为类型断言（运行期确定）
+		processor.GenerateMusic(e.Value.(string))
+	}
+	return processor.musicList
+}
+

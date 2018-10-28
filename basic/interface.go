@@ -75,11 +75,18 @@ func main() {
 	phone.show()
 
 	//用Phone接口去接收Nokia类型
+	//可以用interface实现多态，一旦一个struct类型实现了interface的所有方法，它就实现了这个interface
+	//interface变量可以存储实现者的值，用这种方式即可实现多态
+	//空interface(interface{})，一旦一个struct类型实现了interface的所有方法，它就实现了这个interface
+	//空的interface没有方法，所以可以认为所有的类型都实现了interface{}
+	//如果定义一个函数的参数是interface类型，这个函数可以接受任何类型作为它的参数
 	showPhoneInfo(Nokia{"E63",800})
 
 	phone = new(iPhone)
 	phone.call()
 	phone.show()
+
+	//多态
 	showPhoneInfo(iPhone{"iphone4s","ios5",2100})
 
 	//下面这行代码无法通过编译，因为Mi没有实现接口的方法
