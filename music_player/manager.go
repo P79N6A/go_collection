@@ -1,7 +1,7 @@
 package main
 
 import (
-	//"fmt"
+	"fmt"
 	"container/list"
 	"./music_db"
 	"./player"
@@ -21,8 +21,11 @@ func NewManager(path string) *Manager {
 	return &manager
 }
 
-func (manager *Manager) PlayMusic(name string) {
-	for e := manager.musicList.Front() ; e != nil ; e = e.Next() {
-		player.PlayMusic(*manager.musicPlayer,e.Value.(*music_db.Music))
+func (manager *Manager) PlayMusic() {
+	for e := manager.musicList.Front(); e != nil; e = e.Next() {
+		music := e.Value.(*music_db.Music)
+		fmt.Println(music.FileType)
+		p := player.Factory(music.FileType)
+		player.PlayMusic(p,music)
 	}
 }
