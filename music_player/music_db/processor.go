@@ -63,7 +63,7 @@ func (processor *Processor) ParseContent(name string) []string {
 
 func (processor *Processor)  GenerateMusic(name string) *Music {
 	info := processor.ParseContent(name)
-	music := NewMusic()
+	music := NewMusic() //新建一个Music类型的指针
     music.Name = info[0]
 	music.FileType = info[1]
 	music.Singer = info[2]
@@ -72,7 +72,7 @@ func (processor *Processor)  GenerateMusic(name string) *Music {
 	for i := 5 ; i < len(info) ; i++ {
 		music.Lyric += info[i]
 	}
-	processor.musicList.PushBack(&music)
+	processor.musicList.PushBack(music)
 	return music
 }
 
