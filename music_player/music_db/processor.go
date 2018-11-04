@@ -12,7 +12,7 @@ import (
 
 type Processor struct {
 	filePath string
-	fileList *list.List
+	FileList *list.List
 	musicList *list.List
 }
 
@@ -28,13 +28,9 @@ func NewProcessor(path string) *Processor {
 		fList.PushBack(info.Name())
 	}
 
-	for e := fList.Front() ; e != nil ; e = e.Next() {
-		fmt.Println(e.Value)
-	}
-
 	return &Processor{
 		filePath:path,
-		fileList:fList,
+		FileList:fList,
 		musicList:mList,
 	}
 }
@@ -77,8 +73,7 @@ func (processor *Processor)  GenerateMusic(name string) *Music {
 }
 
 func (processor *Processor) LoadAllMusic() *list.List {
-	for e := processor.fileList.Front() ; e != nil ; e = e.Next() {
-		fmt.Println(e.Value)
+	for e := processor.FileList.Front() ; e != nil ; e = e.Next() {
 		//interface{}类型可用于向函数传递任意类型的变量，但对于函数内部，该变量仍然为interface{}类型
 		//e.Value是interface{}类型，需要将接口类型向普通类型转型，称为类型断言（运行期确定）
 		processor.GenerateMusic(e.Value.(string))

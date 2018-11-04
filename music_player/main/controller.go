@@ -4,7 +4,10 @@ import(
 	"fmt"
 )
 
-func GetInput() string {
+type Controller struct {
+}
+
+func (c *Controller) GetInput() string {
 	var MusicName string
 	fmt.Scanln(&MusicName)
 	return MusicName
