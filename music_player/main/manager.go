@@ -29,6 +29,9 @@ func NewManager(path string) *Manager {
 }
 
 func (manager *Manager) PlayMusic() {
+	if manager.PlayList.Len() == 0 {
+		fmt.Println("no music in play list")
+	}
 	for e := manager.PlayList.Front(); e != nil; e = e.Next() {
 		music := e.Value.(*music_db.Music)
 		p := player.Factory(music.FileType)
@@ -47,7 +50,20 @@ func (manager *Manager) AddMusic(name string) {
 	if flag == 1 {
 		music := manager.processor.GenerateMusic(name)
 		manager.PlayList.PushBack(music)
+		fmt.Println("you've added "+music.Name)
 	} else {
 		fmt.Println("no such music in lib")
 	}
 }
+
+func (manager *Manager) ShowPlayList() {
+	if manager.PlayList.Len() == 0 {
+		fmt.Println("no music in play list")
+		return
+	}
+	fmt.Println("==========show play list==========")
+	for e := manager.PlayList.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value.(*music_db.Music).Name)
+	}
+}
+
