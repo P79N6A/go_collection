@@ -68,13 +68,45 @@ func (manager *Manager) ShowPlayList() {
 }
 
 func (manager *Manager) DeleteMusic(name string) {
-	for e := manager.PlayList.Front(); e != nil; e = e.Next() {
+	e := manager.PlayList.Front()
+	for e != nil{
 		if e.Value.(*music_db.Music).Name == name {
 			manager.PlayList.Remove(e)
+			manager.DeletedList.PushBack(e.Value.(*music_db.Music))
 			fmt.Println("delete " + name + " success")
+			break
 		}
-		if e == nil {
-			fmt.Println("no such music in play list")
+		e = e.Next()
+	}
+	if e == nil {
+		fmt.Println("no such music in play list")
+	}
+}
+
+func (manager *Manager) RollbackMusic(name string) {
+	e := manager.DeletedList.Front()
+	for e != nil {
+		if e.Value.(*music_db.Music).Name == name {
+			manager.PlayList.PushBack(e.Value.(*music_db.Music))
+			manager.DeletedList.Remove(e)
+			fmt.Println("rollback " + name + " success")
+			break
+		}
+		e = e.Next()
+	}
+	if e == nil {
+		fmt.Println("no such music in deleted list")
+	}
+}
+
+func (manager *Manager) ShowDeletedList() {
+	if manager.DeletedList.Len() == 0 {
+		fmt.Println("no music in deleted list")
+	} else {
+		e := manager.DeletedList.Front()
+		for e != nil {
+			fmt.Println(e.Value.(*music_db.Music).Name)
+			e = e.Next()
 		}
 	}
 }
