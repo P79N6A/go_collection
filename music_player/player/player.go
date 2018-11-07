@@ -50,11 +50,11 @@ func (st3Player St3Player) GetSuffix() string {
 //实现多态
 func Factory(t string) MusicPlayer {
 	switch t {
-		case "type:st1":
+		case "st1":
 			return NewSt1Player()
-		case "type:st2":
+		case "st2":
 			return NewSt2Player()
-		case "type:st3":
+		case "st3":
 			return NewSt3Player()
 		default:
 			panic("no such player")

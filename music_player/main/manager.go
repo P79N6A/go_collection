@@ -67,3 +67,15 @@ func (manager *Manager) ShowPlayList() {
 	}
 }
 
+func (manager *Manager) DeleteMusic(name string) {
+	for e := manager.PlayList.Front(); e != nil; e = e.Next() {
+		if e.Value.(*music_db.Music).Name == name {
+			manager.PlayList.Remove(e)
+			fmt.Println("delete " + name + " success")
+		}
+		if e == nil {
+			fmt.Println("no such music in play list")
+		}
+	}
+}
+

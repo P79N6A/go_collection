@@ -37,8 +37,8 @@ func NewProcessor(path string) *Processor {
 
 func (processor *Processor) ParseContent(name string) []string {
 	info := []string{}
-	musicName := "name:"+strings.Split(name,".")[0]
-	fileType := "type:"+strings.Split(name,".")[1]
+	musicName := strings.Split(name,".")[0]
+	fileType := strings.Split(name,".")[1]
 	info = append(info,musicName,fileType)
 
 	file,err := os.Open(processor.filePath+name)

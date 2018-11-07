@@ -14,6 +14,7 @@ func main() {
 		fmt.Println("a	:	add music in play list")
 		fmt.Println("p	:	play music")
 		fmt.Println("s	:	show music in play list")
+		fmt.Println("d	:	delete music in play list")
 		cmd := c.GetInput()
 		switch cmd {
 			case "a" :
@@ -24,6 +25,10 @@ func main() {
 				m.PlayMusic()
 			case "s" :
 				m.ShowPlayList()
+			case "d" :
+				fmt.Println("delete music: ")
+				name := c.GetInput()
+				m.DeleteMusic(name)
 			default :
 				fmt.Println("cmd err")
 		}
