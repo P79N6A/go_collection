@@ -21,7 +21,7 @@ type Michelin struct {
 
 type Tesla struct {
 	id string
-	Wheel
+	Wheel // 如果我们嵌入了一个类型，方法只需要在所嵌入的类型中实现一次，即可在所有包含该嵌入类型的类型中使用
 }
 
 type Benz struct {
