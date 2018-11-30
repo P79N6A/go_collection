@@ -59,7 +59,7 @@ func main() {
 	var c Car
 	m := Michelin{id : "michelin_100", price : 1000}
 	t := Tesla{id : "tesla_100", Wheel : &m} //用接口去接收实现了它的结构体指针
-	c = &t //用接口去接收实现了它的结构体指针，Michelin实现了accelerate方法，它是Tesla的嵌入字段，Tesla也算实现了accelerate方法
+	c = &t //用接口去接收实现了它的结构体指针，Michelin实现了accelerate方法，它是Tesla的嵌入字段，Tesla也算实现了accelerate方法。只要Tesla内部有成员变量实现了accelerate()即可
 	c.Run("tesla")
 	c.Stop("tesla")
 	c.Accelerate() //直接用结构体去调用嵌入字段的方法
