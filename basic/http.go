@@ -13,6 +13,12 @@ type User struct {
 type IndexViewModel struct {
 	Title string
 	User User
+	Posts []Post
+}
+
+type Post struct {
+	User User
+	Body string
 }
 
 func printHelloWorld(w http.ResponseWriter, r *http.Request) {
@@ -46,7 +52,18 @@ func TemplateIndexViewModelTest(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w,&v)
 }
 
+func TemplateRangeTest(w http.ResponseWriter, r *http.Request) {
+	u1 := User{UserName : "tom"}
+	u2 := User{UserName : "john"}
+	p1 := Post{User : u1, Body : "tom is 1st user"}
+	p2 := Post{User : u2, Body : "kevin is 2nd user"}
+	posts := []Post{p1,p2}
+	v := IndexViewModel{Title : "home page", User : u1, Posts : posts}
+	tpl,_ := template.ParseFiles("templates/range.html")
+	tpl.Execute(w,&v)
+}
+
 func main() {
-	http.HandleFunc("/",TemplateIndexViewModelTest)
+	http.HandleFunc("/",TemplateRangeTest)
 	http.ListenAndServe(":8888",nil)
 }
